@@ -1,7 +1,8 @@
 % !Mode:: "TeX:DE:UTF-8:Main"
 
 \documentclass[parskip=half-]{scrartcl}
-\usepackage{fontspec,xfp,l3regex}
+\usepackage{fontspec}
+\usepackage{xfp,l3regex}
 
 \ExplSyntaxOn \makeatletter
 
@@ -10,8 +11,8 @@
  {
   The~combofont~#1~has~already~been~set~up.~I~won't~overwrite~it
  }
- 
- 
+
+
 \cs_generate_variant:Nn \seq_set_split:Nnn {cnV}
 
 \NewDocumentCommand\setupcombofont { m m m } %name, basefonts, combofont declaration
@@ -23,14 +24,14 @@
    {
     \msg_warning:nnn { combofont} {combofont~already~exists} { #1 }
    }
-   {                    
+   {
     \seq_new:c               { l__combo_#1_basefonts_seq }
     \seq_set_split:cnV       { l__combo_#1_basefonts_seq }  { , }\l_tmpa_tl
     %%\seq_show:c {l__combo_#1_basefonts_seq }
     \seq_new:c               { l__combo_#1_combodesc_seq }
     \seq_set_from_clist:cn   { l__combo_#1_combodesc_seq } { #3 }
-    \seq_show:c              { l__combo_#1_combodesc_seq }
-    \__combo_build_combodesc:n { #1 }   
+    %%\seq_show:c              { l__combo_#1_combodesc_seq }
+    \__combo_build_combodesc:n { #1 }
    }
  }
 
@@ -52,97 +53,119 @@
    \tl_set:cx { l__combo_#1_combodesc_tl } { \tl_to_str:n { " } combo \tl_to_str:n { : }~ }
    \int_step_inline:nnnn { 1 } { 1 } { \seq_count:c { l__combo_#1_basefonts_seq } }
    {
-    \tl_put_right:cn { l__combo_#1_combodesc_tl } { ##1~->~\fontid } 
-    \exp_args:Nnc \tl_put_right:cn { l__combo_#1_combodesc_tl } { l_combo_tmpfont_\int_to_roman:n{##1}_tl } 
-    \tl_put_right:cx { l__combo_#1_combodesc_tl} { ,~ \seq_item:cn {l__combo_#1_combodesc_seq } {##1} }
-    \tl_put_right:cx { l__combo_#1_combodesc_tl} {\tl_to_str:n{;}}    
+    \tl_put_right:cn { l__combo_#1_combodesc_tl } { ##1~->~\fontid }
+    \exp_args:Nnc \tl_put_right:cn { l__combo_#1_combodesc_tl } 
+     { 
+      l_combo_tmpfont_\int_to_roman:n{##1}_tl 
+     }
+    \tl_set:Nx\l_tmpa_tl { \seq_item:cn {l__combo_#1_combodesc_seq } {##1} }
+    \tl_if_empty:NF \l_tmpa_tl 
+    {
+     \tl_put_right:cx { l__combo_#1_combodesc_tl} 
+      { 
+       ,~ \seq_item:cn {l__combo_#1_combodesc_seq } {##1} 
+      }
+    }
+    \tl_put_right:cx { l__combo_#1_combodesc_tl} {\tl_to_str:n{;}}
    }
    \tl_put_right:cx { l__combo_#1_combodesc_tl } { \tl_to_str:n { " } }
-   \tl_show:c { l__combo_#1_combodesc_tl }
+   %% \tl_show:c { l__combo_#1_combodesc_tl }
  }
 
-%\font \one = {file:lmmono10-regular.otf} at \fpeval{#1*10}pt
-%\font \two = {file:lmsans10-regular.otf} at \fpeval{#1*15}pt
+\DeclareSizeFunction{combo}{\__combo_sfcnt:}
 
-\DeclareSizeFunction{combo}{\combo@sfcnt}
-
-\def\combo@sfcnt{%
- \tl_show:c {l__combo_\use:c{mandatory@arg}_combodesc_tl}
- \__combo_call_basefonts:n { \mandatory@arg }
- \tl_set_eq:Nc \external@font { l__combo_\use:c{mandatory@arg}_combodesc_tl}  
- \show\external@font
- %\show\mandatory@arg
- %\show\optional@arg
- %%\requestmycombofont{\fpeval{\f@size/10}}%
- %%\expandafter\def\expandafter\external@font\expandafter{\mycombofont}
-}%
+\cs_new:Nn\__combo_sfcnt:
+ {
+  % \tl_show:c {l__combo_\use:c{mandatory@arg}_combodesc_tl}
+   \__combo_call_basefonts:n { \mandatory@arg }
+   \tl_set_eq:Nc \external@font { l__combo_\use:c{mandatory@arg}_combodesc_tl}
+ }%
 \ExplSyntaxOff
 
-
-\setupcombofont{mycombofont}
+\newcommand\defaultfeat{mode=node;script=latn;language=DFLT;+tlig;}
+\setupcombofont{combo-xxx-regular}
  {
-  {file:lmmono10-regular.otf} at \fpeval{#1}pt,
-  {file:lmsans10-regular.otf} at \fpeval{#1/10*15}pt
+  {file:lmmono10-regular.otf:\defaultfeat} at #1pt,
+  {file:lmsans10-regular.otf:\defaultfeat} at \fpeval{#1/10*15}pt,
+  {file:cmunrm.otf:\defaultfeat} at #1pt
  }
  {
-   {} , 0x41-0x5A
- } 
- 
+   {} , 0x41-0x5A*0xDF-0xEA, fallback
+ }
+
+\setupcombofont{combo-xxx-bold}
+ {
+  {file:lmroman10-bold:mode=node} at #1pt,
+  {file:lmsans10-bold.otf:mode=node} at \fpeval{#1/10*15}pt,
+  {file:cmunbbx.otf:mode=node} at #1pt
+ }
+ {
+   {} , 0x41-0x5A*0xDF-0xEA, fallback
+ }
+
+
+
 \DeclareFontFamily{TU}{xxx}{}
-%
-\DeclareFontShape{TU}{xxx}{m}{n}{<->combo*mycombofont}{}
+\DeclareFontShape{TU}{xxx}{m}{n}{<->combo*combo-xxx-regular}{}
+\DeclareFontShape{TU}{xxx}{bx}{n}{<->combo*combo-xxx-bold}{}
 
-
-%\newcommand\requestmycombofont[1]{%
-%\font \one = {file:lmmono10-regular.otf} at \fpeval{#1*10}pt
-%\font \two = {file:lmsans10-regular.otf} at \fpeval{#1*15}pt
-%\def\mycombofont{"combo: 1 -> \fontid \one ;
-%2 -> \fontid \two , 0x41-0x5A;"}
-%}
-%
-%\makeatletter
-%
-%
-%\def\combo@sfcnt#1{%
-%\show\mandatory@arg
-%\show\optional@arg
-%%\requestmycombofont{\fpeval{\f@size/10}}%
-%%\expandafter\def\expandafter\external@font\expandafter{\mycombofont}
-%}%
-%
-%\DeclareFontFamily{TU}{xxx}{}
-%
-%\DeclareFontShape{TU}{xxx}{m}{n}{<->combo*[45]cmtt}{}
-%
-%\show\before
 
 \begin{document}
 \section{Call through nfss?}
 
+
+\normalsize 
+\fontfamily{xxx}\selectfont -- 
+Some Text with Capital Words fi
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte êßä
+%
+\large
+Some Text with Capital Words
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte
+
+\normalsize
+
+Some Text with Capital Words
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte êßä
+
+\bfseries 
+\normalsize
+\fontfamily{xxx}\selectfont
+Some Text with Capital Words fi
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte êßä
+%
+\large
+Some Text with Capital Words
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte
+
+
+\end{document}
+
+
+
 \ExplSyntaxOn
 \__combo_call_basefonts:n {mycombofont}
 
-\l_combo_tmpfont_i_tl abc 
+\l_combo_tmpfont_i_tl abc
 
 \l_combo_tmpfont_ii_tl abc
 
-%\tl_show:N \l__combo_mycombofont_combodesc_tl 
- \font\testfont ="combo:~1~->~\fontid\l_combo_tmpfont_i_tl , ; 2~->~\fontid \l_combo_tmpfont_ii_tl~,~ 0x41-0x5A;"
- 
- \testfont abc
- 
+%\tl_show:N \l__combo_mycombofont_combodesc_tl
+ \font\testfont =\l__combo_mycombofont_combodesc_tl
+
+
+ \testfont Abc
+
  %\edef\test{\noexpand\font\noexpand\mytestfont = \unexpanded\expandafter{\l__combo_mycombofont_combodesc_tl}}
 % \test abc
 
 \ExplSyntaxOff
 
-%\normalsize \show\beforeb
-%\fontfamily{xxx}\selectfont \show\after
-%Some Text with Capital Words
-%
-%\large
-%Some Text with Capital Words
-\end{document}
 
 > external@font=macro:
 ->"combo: 1 -> fontid one ; 2 -> fontid two , 0x41-0x5A;".
@@ -217,4 +240,4 @@ Some Text with Capital Words
 
 \large
 Some Text with Capital Words
-\end{document}
+\end{document} 
