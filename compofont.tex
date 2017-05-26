@@ -1,103 +1,29 @@
 % !Mode:: "TeX:DE:UTF-8:Main"
 
 \documentclass[parskip=half-]{scrartcl}
+\usepackage{combofont}
 \usepackage{fontspec}
-\usepackage{xfp,l3regex}
+\setmainfont{arial}
+\usepackage{xcolor}
 
-\ExplSyntaxOn \makeatletter
 
-
-\msg_new:nnn {combofont} {combofont~already~exists}
+\setupcombofont{combotest-regular}
  {
-  The~combofont~#1~has~already~been~set~up.~I~won't~overwrite~it
- }
-
-
-\cs_generate_variant:Nn \seq_set_split:Nnn {cnV}
-
-\NewDocumentCommand\setupcombofont { m m m } %name, basefonts, combofont declaration
- {
-   \tl_set:Nn\l_tmpa_tl { #2 }
-   \regex_replace_all:nnN {\#1} {\c{f@size}} \l_tmpa_tl
-   % \tl_show:N\l_tmpa_tl
-   \seq_if_exist:cTF { l__combo_#1_basefonts_seq }
-   {
-    \msg_warning:nnn { combofont} {combofont~already~exists} { #1 }
-   }
-   {
-    \seq_new:c               { l__combo_#1_basefonts_seq }
-    \seq_set_split:cnV       { l__combo_#1_basefonts_seq }  { , }\l_tmpa_tl
-    %%\seq_show:c {l__combo_#1_basefonts_seq }
-    \seq_new:c               { l__combo_#1_combodesc_seq }
-    \seq_set_from_clist:cn   { l__combo_#1_combodesc_seq } { #3 }
-    %%\seq_show:c              { l__combo_#1_combodesc_seq }
-    \__combo_build_combodesc:n { #1 }
-   }
- }
-
-\cs_new:Nn \__combo_call_basefonts:n
- {
-  \int_zero:N \l_tmpa_int
-  \seq_map_inline:cn {l__combo_#1_basefonts_seq}
-   {
-    \int_incr:N \l_tmpa_int
-    \exp_args:Nc \font { l_combo_tmpfont_\int_to_roman:n{\l_tmpa_int}_tl } = ##1
-    %%\use:c { l_combo_tmpfont_\int_use:c{l_tmpa_int}_tl } abc
-   }
- }
-
-
-\cs_new:Nn \__combo_build_combodesc:n
- {
-   \tl_new:c { l__combo_#1_combodesc_tl }
-   \tl_set:cx { l__combo_#1_combodesc_tl } { \tl_to_str:n { " } combo \tl_to_str:n { : }~ }
-   \int_step_inline:nnnn { 1 } { 1 } { \seq_count:c { l__combo_#1_basefonts_seq } }
-   {
-    \tl_put_right:cn { l__combo_#1_combodesc_tl } { ##1~->~\fontid }
-    \exp_args:Nnc \tl_put_right:cn { l__combo_#1_combodesc_tl } 
-     { 
-      l_combo_tmpfont_\int_to_roman:n{##1}_tl 
-     }
-    \tl_set:Nx\l_tmpa_tl { \seq_item:cn {l__combo_#1_combodesc_seq } {##1} }
-    \tl_if_empty:NF \l_tmpa_tl 
-    {
-     \tl_put_right:cx { l__combo_#1_combodesc_tl} 
-      { 
-       ,~ \seq_item:cn {l__combo_#1_combodesc_seq } {##1} 
-      }
-    }
-    \tl_put_right:cx { l__combo_#1_combodesc_tl} {\tl_to_str:n{;}}
-   }
-   \tl_put_right:cx { l__combo_#1_combodesc_tl } { \tl_to_str:n { " } }
-   %% \tl_show:c { l__combo_#1_combodesc_tl }
- }
-
-\DeclareSizeFunction{combo}{\__combo_sfcnt:}
-
-\cs_new:Nn\__combo_sfcnt:
- {
-  % \tl_show:c {l__combo_\use:c{mandatory@arg}_combodesc_tl}
-   \__combo_call_basefonts:n { \mandatory@arg }
-   \tl_set_eq:Nc \external@font { l__combo_\use:c{mandatory@arg}_combodesc_tl}
- }%
-\ExplSyntaxOff
-
-\newcommand\defaultfeat{mode=node;script=latn;language=DFLT;+tlig;}
-\setupcombofont{combo-xxx-regular}
- {
-  {file:lmmono10-regular.otf:\defaultfeat} at #1pt,
-  {file:lmsans10-regular.otf:\defaultfeat} at \fpeval{#1/10*15}pt,
-  {file:cmunrm.otf:\defaultfeat} at #1pt
+  {file:ariali.ttf:\combodefaultfeat;+smcp} at #1pt,
+  {file:arial.ttf:\combodefaultfeat;+smcp} at \fpeval{#1/10*15}pt,
+  {file:cmunrm.otf:\combodefaultfeat}            at #1pt
  }
  {
-   {} , 0x41-0x5A*0xDF-0xEA, fallback
+   {} , 
+   0x41-0x7A*0xDF-0xEA, 
+   fallback
  }
 
-\setupcombofont{combo-xxx-bold}
+\setupcombofont{combotest-bold}
  {
-  {file:lmroman10-bold:mode=node} at #1pt,
-  {file:lmsans10-bold.otf:mode=node} at \fpeval{#1/10*15}pt,
-  {file:cmunbbx.otf:mode=node} at #1pt
+  {file:lmroman10-bold:\combodefaultfeat} at #1pt,
+  {file:lmsans10-bold.otf:\combodefaultfeat} at \fpeval{#1/10*15}pt,
+  {file:cmunbbx.otf:\combodefaultfeat} at #1pt
  }
  {
    {} , 0x41-0x5A*0xDF-0xEA, fallback
@@ -105,17 +31,19 @@
 
 
 
-\DeclareFontFamily{TU}{xxx}{}
-\DeclareFontShape{TU}{xxx}{m}{n}{<->combo*combo-xxx-regular}{}
-\DeclareFontShape{TU}{xxx}{bx}{n}{<->combo*combo-xxx-bold}{}
+\DeclareFontFamily{TU}{combotest}{}
+\DeclareFontShape{TU} {combotest}{m}{n}{<->combo*combotest-regular}{}
+\DeclareFontShape{TU} {combotest}{bx}{n}{<->combo*combotest-bold}{}
+
 
 
 \begin{document}
 \section{Call through nfss?}
-
+\scshape abc
+\font\test={file:lmroman10-regular.otf:+smcp}\test abc
 
 \normalsize 
-\fontfamily{xxx}\selectfont -- 
+\fontfamily{combotest}\selectfont -- 
 Some Text with Capital Words fi
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte êßä
@@ -125,7 +53,7 @@ Some Text with Capital Words
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte
 
-\normalsize
+\tiny
 
 Some Text with Capital Words
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
@@ -133,7 +61,7 @@ apanages, des поместья, de la famille Buonaparte êßä
 
 \bfseries 
 \normalsize
-\fontfamily{xxx}\selectfont
+
 Some Text with Capital Words fi
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte êßä
@@ -142,6 +70,13 @@ apanages, des поместья, de la famille Buonaparte êßä
 Some Text with Capital Words
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte
+
+\tiny 
+
+Some Text with Capital Words fi
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte êßä
+%
 
 
 \end{document}
