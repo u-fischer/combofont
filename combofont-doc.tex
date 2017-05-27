@@ -50,7 +50,7 @@ This is a EXPERIMENTAL package.
 
 It can disappear without notice e.\,g. if the \package{luaotfload} changes so that it no longer work, or if luatex changes, or if \package{fontspec} includes the code.
 
-It is also possible that syntax and commands change in a incompatible way. So if you use it in a production environment: \textbf{You have been warned}
+It is also possible that syntax and commands change in a incompatible way. So if you use it in a production environment: \textbf{You have been warned}.
 
 \section{Introduction}
 In version 2.7. \package{luaotfload} supports combining characters from multiple fonts into a single virtualized one.
@@ -65,9 +65,15 @@ After trying around a bit and then asking a question (https://tex.stackexchange.
 
 \package{combofont.sty} is the result. 
 
+It is not meant as a production package but as package that helps to exploit the use of combo fonts. 
+
+\section{Requirements}
+You need at least an up-to-date TeXLive 2016. TeXLive 2017 with luatex 1.0.4. or a current miktex is better.
+
+
 \section{Using combo fonts}
 
-To be able to use a combo font with standard \LaTeX\ font commands you have to do two things:
+To be able to use a combo font with standard \LaTeX\ font commands you have to do two things (the source code of this documentation is a complete example):
 
 \begin{enumerate}
 \item Setup and describe the building of the combo font with \verb+\setupcombofont+
@@ -109,150 +115,80 @@ Important points are:
 }
 \end{verbatim}
 
-Important points
+Important points:
 \begin{enumerate}
-\item there should be as many settings as there are fonts. 
-\item empty entries should be marked with a pair ob braces (normally this should done for the first font).
+\item There should be as many settings as there are fonts.
+\item Empty entries should be marked with a pair of braces (normally this should done for the first font).
 \item You can add ranges of code points and single code points. Blocks are separated by an asterix \verb+*+. 
 \item The keyword \texttt{fallback} means that this font is used for „missing glyphs“  
 \end{enumerate}  
 \end{description}
 
+\subsection{Write \texttt{nfss}-declarations}
 
-\section{Call through nfss?}
+After all the fonts you need have been setup, you can write suitable \texttt{nfss}-declaration which make it possible to call the font by family and other font commands. Example:
 
-%\font\test={file:lmroman10-regular.otf:+smcp}\test abc
+\begin{verbatim}
+\DeclareFontFamily{TU}{combotest}{}
+\DeclareFontShape {TU}{combotest}{m}{n} {<->combo*combotest-regular}{}
+\DeclareFontShape {TU}{combotest}{bx}{n}{<->combo*combotest-bold}{}
+\end{verbatim}
 
+The important point is the size-function \verb+combo*+ which does all the work. 
+
+
+\section{Demonstration}
+
+
+\verb+\fontfamily{combotest}\selectfont+
 \fontfamily{combotest}\selectfont --
 Some Text with Capital Words!
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte?
 %
-\large
-Some Text with Capital Words!
-Eh bien, mon prince. Gênes et Lueques ne sont plus que des
-apanages, des поместья, de la famille Buonaparte?
-
-\tiny
+\verb+\large+\large
 
 Some Text with Capital Words!
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte?
 
-\bfseries
+\verb+\tiny+\tiny
+
+Some Text with Capital Words!
+Eh bien, mon prince. Gênes et Lueques ne sont plus que des
+apanages, des поместья, de la famille Buonaparte?
+
+\verb+\bfseries\normalsize+\bfseries
 \normalsize
 
 Some Text with Capital Words!
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte?
 %
-\large
+\verb+\large+\large
 Some Text with Capital Words!
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
 apanages, des поместья, de la famille Buonaparte?
 
-\tiny
+\verb+\tiny+\tiny
 
-Some Text with Capital Words fi
+Some Text with Capital Words!
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
-apanages, des поместья, de la famille Buonaparte êßä
+apanages, des поместья, de la famille Buonaparte?
 %
 
+\normalfont
+\section{Remarks and open questions}
 
+As mentioned in the introduction a combo font only pulls in glyphs. This has a lot of (not all yet understood or seen) side effects. Here a few things that should be considered when building a combo font:
+
+\begin{description}
+  \item[Kerning] Obviously some kerning works (see e.g. the large W before the o in the demonstration). But it is quite unclear which values are used, how bad it can get and if one can correct it.
+  \item[Font features] Only font features of the first font are taken into account. E.g. adding a color setting has an effect only if applied to the first font and then colors all glyphs. \verb!+smcp! (the open type small caps feature) only has an effect if the first font knows it. Mixing scripts and languages is probably not possible (but I didn't try yet).
+  \item[Speed] I didn't try to optimize the loading of the fonts. 
+  \item[Pulling glyphs in other positions] One interesting question would if it is possible to switch glyph positions before or after the pull. E.g. is one could move the chars a-z from arial to the math serif positions. 
+  \item[Side effect] I naturally directly found a side-effect of such a combo font declaration: https://github.com/lualatex/luaotfload/issues/414. So the question is if there are more.
+\end{description}
 \end{document}
 
 
-
-\ExplSyntaxOn
-\__combo_call_basefonts:n {mycombofont}
-
-\l_combo_tmpfont_i_tl abc
-
-\l_combo_tmpfont_ii_tl abc
-
-%\tl_show:N \l__combo_mycombofont_combodesc_tl
- \font\testfont =\l__combo_mycombofont_combodesc_tl
-
-
- \testfont Abc
-
- %\edef\test{\noexpand\font\noexpand\mytestfont = \unexpanded\expandafter{\l__combo_mycombofont_combodesc_tl}}
-% \test abc
-
-\ExplSyntaxOff
-
-
-> external@font=macro:
-->"combo: 1 -> fontid one ; 2 -> fontid two , 0x41-0x5A;".
-
-> external@font=macro:
-->"combo:1->fontid l_combo_tmpfont_i_tl ;2->fontid l_combo_tmpfont_ii_tl ;".
-
-\documentclass[parskip=half-]{scrartcl}
-\usepackage{fontspec,xfp}
-
-\newcommand\requestmycombofont[1]{%
-\font \one = {file:lmmono10-regular.otf} at \fpeval{#1*10}pt
-\font \two = {file:lmsans10-regular.otf} at \fpeval{#1*15}pt
-\def\mycombofont{"combo: 1 -> \fontid \one ;
-2 -> \fontid \two , 0x41-0x5A;"}
-}
-
-\makeatletter
-\DeclareSizeFunction{ulrike}{\ulrike@sfcnt\@font@warning}
-\def\ulrike@sfcnt#1{%
-\requestmycombofont{\fpeval{\f@size/10}}%
-\expandafter\def\expandafter\external@font\expandafter{\mycombofont}
-}%
-
-\DeclareFontFamily{TU}{xxx}{}
-
-\DeclareFontShape{TU}{xxx}{m}{n}{<->ulrike*zzz}{}
-
-
-
-\begin{document}
-
-\section{Call through nfss?}
-\normalsize
-\fontfamily{xxx}\selectfont
-Some Text with Capital Words
-
-\large
-Some Text with Capital Words
-\end{document}
-
-\documentclass[parskip=half-]{scrartcl}
-\usepackage{fontspec,xfp}
-
-\newcommand\requestmycombofont[1]{%
-\font \one = {file:lmmono10-regular.otf} at \fpeval{#1*10}pt
-\font \two = {file:lmsans10-regular.otf} at \fpeval{#1*15}pt
-\def\mycombofont{"combo: 1 -> \fontid \one ;
-2 -> \fontid \two , 0x41-0x5A;"}
-}
-
-\makeatletter
-\DeclareSizeFunction{ulrike}{\ulrike@sfcnt\@font@warning}
-\def\ulrike@sfcnt#1{%
-\requestmycombofont{\fpeval{\f@size/10}}%
-\expandafter\def\expandafter\external@font\expandafter{\mycombofont}
-\show\external@font
-}%
-
-\DeclareFontFamily{TU}{xxx}{}
-
-\DeclareFontShape{TU}{xxx}{m}{n}{<->ulrike*zzz}{}
-
-
-
-\begin{document}
-
-\section{Call through nfss?}
-\normalsize
-\fontfamily{xxx}\selectfont
-Some Text with Capital Words
-
-\large
-Some Text with Capital Words
-\end{document} 
