@@ -1,5 +1,48 @@
 % !Mode:: "TeX:DE:UTF-8:Main"
+\documentclass[parskip=half-,egregdoesnotlikesansseriftitles]{article}
+%\usepackage{combofont}
+%\usepackage{ydoc-code,ydoc-desc}
+\usepackage{fontspec}
 
+%\usepackage{xcolor}
+
+
+%\setupcombofont{combotest-regular}
+% {
+%  {file:lmroman10-regular.otf:\combodefaultfeat} at #1pt,
+%  {file:lmsans10-regular.otf} at \fpeval{#1/10*15}pt,
+%  {file:cmunrm.otf}           at #1pt
+% }
+% {
+%   {} ,
+%   0x41-0x5A*0x21*0x3F,
+%   fallback
+% }
+%
+%\setupcombofont{combotest-bold}
+% {
+%  {file:lmroman10-bold.otf:\combodefaultfeat} at #1pt,
+%  {file:lmsans10-bold.otf} at \fpeval{#1/10*15}pt,
+%  {file:cmunbbx.otf}       at #1pt
+% }
+% {
+%   {} ,
+%   0x41-0x5A*0x21*0x3F,
+%   fallback
+% }
+%
+%
+%
+%\DeclareFontFamily{TU}{combotest}{}
+%\DeclareFontShape{TU} {combotest}{m}{n}{<->combo*combotest-regular}{}
+%\DeclareFontShape{TU} {combotest}{bx}{n}{<->combo*combotest-bold}{}
+%
+\title{The \texttt{combofont} package}
+\author{Ulrike Fischer\thanks{fischer@troubleshooting-tex.de}}
+\newcommand\package[1]{\texttt{#1}}
+\begin{document}
+\maketitle
+\end{document}
 \documentclass[parskip=half-]{scrartcl}
 \usepackage{combofont}
 \usepackage{ydoc-code,ydoc-desc}
@@ -27,8 +70,8 @@
   {file:cmunbbx.otf}       at #1pt
  }
  {
-   {} , 
-   0x41-0x5A*0x21*0x3F, 
+   {} ,
+   0x41-0x5A*0x21*0x3F,
    fallback
  }
 
@@ -46,7 +89,7 @@
 
 \section{Status: EXPERIMENTAL}
 
-This is a EXPERIMENTAL package. 
+This is a EXPERIMENTAL package.
 
 It can disappear without notice e.\,g. if the \package{luaotfload} changes so that it no longer work, or if luatex changes, or if \package{fontspec} includes the code.
 
@@ -59,11 +102,11 @@ That means that one can build a font that takes e.g. the capital letters from a 
 
 The methods pulls in \emph{only} glyphs. It is not suitable for every imaginable font combination -- some drawbacks are described below -- and one should use it with care. Nevertheless it is a quite neat extension of the tools to manipulate fonts.
 
-The main problem with the examples in the \package{luaotfload} manual is that it creates fonts of a fix size. This means that they don't respond to command like \verb+\large+ or \verb+\footnotesize+. 
+The main problem with the examples in the \package{luaotfload} manual is that it creates fonts of a fix size. This means that they don't respond to command like \verb+\large+ or \verb+\footnotesize+.
 
 After trying around a bit and then asking a question (https://tex.stackexchange.com/questions/371647/call-a-luatex-combo-font-through-nfss) I got from David Carlisle the idea to use a \texttt{size}-Funktion which one define with \verb+\DeclareSizeFunction+ to inject the needed code to size the combo-font in a nfss-\verb+\DeclareFontShape+-command.
 
-\package{combofont.sty} is the result. 
+\package{combofont.sty} is the result.
 
 \section{Using combo fonts}
 
@@ -72,7 +115,7 @@ To be able to use a combo font with standard \LaTeX\ font commands you have to d
 \begin{enumerate}
 \item Setup and describe the building of the combo font with \verb+\setupcombofont+
 
-\item Write \texttt{nfss}-declarations 
+\item Write \texttt{nfss}-declarations
 \end{enumerate}
 
 \subsection{Setup the combo font}
@@ -81,9 +124,9 @@ To be able to use a combo font with standard \LaTeX\ font commands you have to d
 
 \begin{description}
   \item[\marg{name}] is the name of the font. It should be some unique ascii-string without spaces. If you intent to define lots of fonts it would be a good idea to think about a sensible naming sheme. In the example here I simply used \texttt{combotest-regular} and \texttt{combotest-bold}.
-      
+
   \item[\marg{comma list of basefonts}] This should be a list of font declarations you want to use to build your combo font. The syntax used is described in the \package{luaotfload} manual. Example:
-      
+
 \begin{verbatim}
 {
  {file:lmroman10-regular.otf:\combodefaultfeat} at #1pt,
@@ -94,8 +137,8 @@ To be able to use a combo font with standard \LaTeX\ font commands you have to d
 
 Important points are:
 \begin{description}
-\item[Order of the fonts] The first font is the main font which will receive the glyphs. So think carefully which font is should be and setup its font features correctly. \package{combofont} defines as a helper command \verb+\combodefaultfeat+ which sets \texttt{mode=node;script=latn;language=DFLT;+tlig;}. 
-    
+\item[Order of the fonts] The first font is the main font which will receive the glyphs. So think carefully which font is should be and setup its font features correctly. \package{combofont} defines as a helper command \verb+\combodefaultfeat+ which sets \texttt{mode=node;script=latn;language=DFLT;+tlig;}.
+
 \item[Size declaration] The font description should end with a size declaration line \verb+at #1pt+. When processing the font \verb+#1+ will be replaced by the current font size. As you can see in the second font you can do calculations.
 \end{description}
 
@@ -111,11 +154,11 @@ Important points are:
 
 Important points
 \begin{enumerate}
-\item there should be as many settings as there are fonts. 
+\item there should be as many settings as there are fonts.
 \item empty entries should be marked with a pair ob braces (normally this should done for the first font).
-\item You can add ranges of code points and single code points. Blocks are separated by an asterix \verb+*+. 
-\item The keyword \texttt{fallback} means that this font is used for „missing glyphs“  
-\end{enumerate}  
+\item You can add ranges of code points and single code points. Blocks are separated by an asterix \verb+*+.
+\item The keyword \texttt{fallback} means that this font is used for „missing glyphs“
+\end{enumerate}
 \end{description}
 
 
