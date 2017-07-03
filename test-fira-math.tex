@@ -1,0 +1,128 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+%\RequirePackage{luatex85}
+% !TEX encoding = UTF-8 Unicode
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[parskip=full]{scrartcl}
+
+\usepackage{luacode}
+\begin{luacode}
+
+local patch_texgyrepagellamath = function (fontdata)
+ local mathconstants = fontdata.MathConstants
+ if mathconstants and fontdata.psname == "TeXGyrePagellaMath-Regular"
+ then
+    mathconstants.FractionNumeratorDisplayStyleShiftUp=0.5*mathconstants.FractionNumeratorDisplayStyleShiftUp
+    mathconstants.FractionNumeratorShiftUp=5.5*mathconstants.FractionNumeratorShiftUp
+ end
+end
+
+
+luatexbase.add_to_callback
+ (
+  "luaotfload.patch_font",
+  patch_texgyrepagellamath,
+  "change_math_fonts"
+ )
+\end{luacode}
+
+\usepackage{unicode-math}
+
+\setmainfont{Fira Sans}
+
+\usepackage{combofont}
+
+\setupcombofont{FiraMath}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
+ file:firasans-light.otf at #1pt,
+ file:firasans-lightitalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x61-0x7A
+ }
+
+\setupcombofont{FiraMathScript}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT;+ssty=0 at #1pt,
+ file:firasans-regular.otf at #1pt,
+ file:firasans-regularitalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x61-0x7A
+ }
+
+\setupcombofont{FiraMathScriptScript}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT;+ssty=1 at #1pt,
+ file:firasans-semibold.otf at #1pt,
+ file:firasans-semibolditalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x61-0x7A
+ }
+ 
+\setupcombofont{FiraMathBold}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
+ file:firasans-regular.otf at #1pt,
+ file:firasans-regularitalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x61-0x7A
+ }
+
+
+\DeclareFontFamily{TU}{FiraMath}{}
+\DeclareFontShape {TU}{FiraMath}{m}{n}
+  {
+    <-7> combo*FiraMathScriptScript
+   <7-10>combo*FiraMathScript
+   <10-> combo*FiraMath
+  }{}
+
+\DeclareFontShape {TU}{FiraMath}{bx}{n} {<->combo*FiraMathBold}{}
+
+\setmathfont{TeX Gyre Pagella Math}%
+
+%
+\SetSymbolFont{operators}{normal}{TU}{FiraMath}{m}{n}
+\SetSymbolFont{operators}{bold}{TU}{FiraMath}{bx}{n}
+%
+%
+%% show with [\Umathcharclass `\a] [\Umathcharfam `\a] [\Umathcharslot `\a]
+%
+\Umathcode `\a =  "7 "0 "61
+\Umathcode `\b =  "7 "0 "62
+\Umathcode `\c =  "7 "0 "63
+\Umathcode `\d =  "7 "0 "64
+\Umathcode `\e =  "7 "0 "65
+\Umathcode `\f =  "7 "0 "66
+\Umathcode `\g =  "7 "0 "67
+\Umathcode `\h =  "7 "0 "68
+
+
+\begin{document}
+
+\minisec{Test some symbols}
+
+$123 - a^{a^a} + 1^{1^1} abc = \sqrt{hhhhhhhhhhh}$
+
+\minisec{Test patching}
+
+$\frac{1}{9}$
+
+\minisec{Test math version}
+
+\mathversion{bold}
+$123 - a^{a^a} + 1^{1^1} abc = \frac{1}{9} $
+
+\end{document}

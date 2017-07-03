@@ -68,7 +68,9 @@ After trying around a bit and then asking a question (https://tex.stackexchange.
 It is not meant as a production package but as package that helps to exploit the use of combo fonts.
 
 \section{Requirements}
-You need at least an up-to-date TeXLive 2016. TeXLive 2017 with luatex 1.0.4. or a current miktex is better.
+You need at least an up-to-date TeXLive 2016. TeXLive 2017 with luatex 1.0.4. or a current miktex is better. 
+
+\textbf{Change Version 0.2, 3.7.2017}: The style no longer loads the now obsolete \texttt{l3regex}, it assumes that it is loaded by \texttt{expl3}. In older \TeX-systems you will have to load the package.
 
 
 \section{Using combo fonts}
@@ -102,7 +104,9 @@ To be able to use a combo font with standard \LaTeX\ font commands you have to d
 \begin{description}
 \item[Order of the fonts] The first font is the main font which will receive the glyphs. So think carefully which font is should be and setup its font features correctly. \package{combofont} defines as a helper command \verb+\combodefaultfeat+ which sets \texttt{mode=node;script=latn;language=DFLT;+tlig;}.
 
-\item[Size declaration] The font description should end with a size declaration line \verb+at #1pt+. When processing the font \verb+#1+ will be replaced by the current font size. As you can see in the second font you can do calculations.
+\item[Size declaration] The font description should end with a size declaration line \verb+at #1pt+. When processing the font \verb+#1+ will be replaced by the current font size. As you can see in the second font you can do calculations. \emph{Don't forget the size declaration!}
+    
+\item Be careful with the commas: there shouldn't be one after the last font.    
 \end{description}
 
 \item[\marg{comma list of ranges and code-points}] This is a comma list of settings which describe which glyphs are taken from the respective font. Example:
@@ -140,7 +144,7 @@ The important point is the size-function \verb+combo*+ which does all the work.
 \section{Demonstration}
 
 
-\verb+\fontfamily{combotest}\selectfont+: 
+\verb+\fontfamily{combotest}\selectfont+:
 \fontfamily{combotest}\selectfont
 Some Text with Capital Words!
 Eh bien, mon prince. Gênes et Lueques ne sont plus que des
@@ -171,6 +175,29 @@ apanages, des поместья, de la famille Buonaparte?
 %
 
 \normalfont\normalsize
+
+\section{About Math (new in version 0.2)}\enlargethispage{2\baselineskip}
+
+Combofonts can also be used in math. There is a test file called \texttt{combofont-test-fira-math.tex} which shows how one can combine \textsf{TeX Gyre Pagella Math} with the \textsf{Fira Sans} textfont. It also shows how one can patch the font to adjust values of the math table.
+
+\minisec{Important points:}
+\begin{enumerate}
+\item  This a first try to get something working in math. It is in no way finished or complete, I'm rather certain that something  will be missing or even faulty.
+\item  Start with a real math font with a math constants table. 
+\item  Don't expect to get a perfect sans serif math font this way without work. It can take quite some time to adjust everything. Also a text font is not really meant to be used as math font.   
+\item  The lua-code for the font patch compares \texttt{fontdata.psname} with the string \\\texttt{TeXGyrePagellaMath-Regular} to restrict the patch to the specific font.
+
+       The font name database of luaotfload-names.lua contains for \textsf{TeX Gyre Pagella Math} these entries:
+       
+       \begin{verbatim}
+       ["plainname"]="TeXGyrePagellaMath-Regular",
+       ["psname"]="texgyrepagellamathregular",
+       \end{verbatim}
+       
+  As you can see the correct string for the comparision with  \texttt{fontdata.psname}  is in \verb+["plainname"]+ and not in \verb+["psname"]+. Don't ask me why. \texttt{luaotfload} seems to copy the infos around quite a lot. So when adapting the code to other fonts, test with various font names if it seems not to work.
+\end{enumerate}
+
+
 \section{Remarks and open questions}
 
 As mentioned in the introduction a combo font only pulls in glyphs. This has a lot of (not all yet understood or seen) side effects. Here a few things that should be considered when building a combo font:
