@@ -2,7 +2,7 @@
 
 An EXPERIMENTAL package to add nfss-declaration of combo fonts to a luaLaTeX document
 
-Version 0.1  Ulrike Fischer 2017-
+Version 0.2  Ulrike Fischer 2017-
 
 
 ## License
@@ -14,6 +14,7 @@ LATEX Project Public License 1.3c.
 - Readme.md (this file)
 - combofont.sty (the sty)
 - combofont.tex, combofont.pdf (the docu and example)
+- combofont-test-fira-math.tex and pdf (and example for math)
 
 
 ## Installation
