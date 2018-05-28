@@ -1,4 +1,45 @@
 % !Mode:: "TeX:DE:UTF-8:Main"
+\documentclass{article}
+\usepackage[norsk]{babel}
+\usepackage[adobe-utopia]{mathdesign}
+\usepackage{fontspec}
+\setmainfont{Arial}
+
+
+
+\begin{document} \makeatletter \show\f@encoding \show\f@family
+abc 1234567890 $1234567890$ ß
+\end{document}
+
+\RequirePackage{luatex85}
+\documentclass[parskip=half-]{scrartcl}
+\usepackage{combofont}
+
+\setupcombofont{combotest-regular}
+ {
+  {file:lmmono10-regular.otf:\combodefaultfeat} at #1pt,
+  {file:lmsans10-regular.otf} at \fpeval{#1/10*15}pt
+ }
+ {
+   {} ,
+   0x41-0x5A*0x21*0x3F
+ }
+
+
+\DeclareFontFamily{TU}{combotest}{}
+\DeclareFontShape{TU} {combotest}{m}{n}{<->combo*combotest-regular}{}
+\begin{document}
+
+\fontfamily{combotest}\selectfont
+A Text with Some Capitals!
+
+\large
+A Text with Some Capitals!
+
+\scriptsize
+A Text with Some Capitals!
+
+\end{document}
 \documentclass[parskip=half-,egregdoesnotlikesansseriftitles]{article}
 %\usepackage{combofont}
 %\usepackage{ydoc-code,ydoc-desc}

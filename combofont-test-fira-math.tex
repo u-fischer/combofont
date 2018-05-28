@@ -1,5 +1,5 @@
 % !Mode:: "TeX:DE:UTF-8:Main"
-
+%% Date 2017/07/03 Version 0.2 combofont example 
 \documentclass[parskip=full]{scrartcl}
 
 \usepackage{luacode}
@@ -48,7 +48,7 @@ luatexbase.add_to_callback
  {%
  file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT;+ssty=0 at #1pt,
  file:firasans-regular.otf at #1pt,
- file:firasans-regularitalic.otf at #1pt
+ file:firasans-italic.otf at #1pt
  }
  {%
  {},
@@ -67,13 +67,13 @@ luatexbase.add_to_callback
  0x30-0x39,
  0x61-0x7A*0x03B1-0x03C9
  }
- 
-% Mathversion bold need Script and ScriptScript declarations too! 
+
+% Mathversion bold need Script and ScriptScript declarations too!
 \setupcombofont{FiraMathBold}
  {%
  file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
  file:firasans-regular.otf at #1pt,
- file:firasans-regularitalic.otf at #1pt
+ file:firasans-italic.otf at #1pt
  }
  {%
  {},

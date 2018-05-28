@@ -2,7 +2,8 @@
 
 An EXPERIMENTAL package to add nfss-declaration of combo fonts to a luaLaTeX document
 
-Version 0.2 copyright Ulrike Fischer 2017-
+Version 0.2R 2018/05/28
+copyright Ulrike Fischer 
 
 
 ## License

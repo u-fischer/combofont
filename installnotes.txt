@@ -1,0 +1,4 @@
+CTAN Upload:
+ - change package version and date in build.lua
+ - call l3build tag x
+ - call l3build ctan

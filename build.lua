@@ -1,8 +1,8 @@
 -- Build script for citeall
 -- l3build install --texmfhome ../texmf
 
-packageversion="0.2"
-packagedate="2017/07/03"
+packageversion= "0.2R" -- "0.2"
+packagedate="2018/05/28"
 
 module   = "combofont"
 ctanpkg  = "combofont"
@@ -10,57 +10,39 @@ ctanpkg  = "combofont"
 stdengine    = "luatex"
 checkengines = {"luatex"}
 
+typesetexe   = "lualatex"
+
 
 -- do all got in doc
 typesetfiles      ={"combofont.tex","combofont-test-fira-math.tex"}
 demofiles         ={"combofont-test-fira-math.tex"}
 docfiles          ={"README.md","combofont.tex"}
+textfiles         = {"*.md"}
 
-installfiles      ={"combofont.sty"}
+sourcefiles       = {"combofont.sty"}
+installfiles      = {"combofont.sty"}
 
 versionform       ="true"
 versionfiles      ={"combofont.tex","combofont.sty","README.md"}
 
+tagfiles = {"combofont.sty","Readme.md"}
+
 -- packtdszip=true
+function update_tag (file , content , tagname , tagdate )
+  if string.match (file , "%.sty$") then
+   return string.gsub ( content ,
+   "\n\\def\\UlrikeFischer@package@combofont@date{%d%d%d%d/%d%d/%d%d}\\def\\UlrikeFischer@package@combofont@version{%w+%.%w+}\n",
+   "\n\\def\\UlrikeFischer@package@combofont@date{"..packagedate.."}\\def\\UlrikeFischer@package@combofont@version{"..packageversion.."}\n"
+    )
+  elseif string.match (file , "%.md$") then
+   return string.gsub ( content ,
+    "\nVersion %w+%.%w+%s+%d%d%d%d/%d%d/%d%d",
+    "\nVersion " .. packageversion .. " " .. packagedate)
+  end
+  return content
+ end
 
 
-function setversion_update_line(line, date, version)
-       -- No real regex so do it one type at a time
-         if string.match
-          (
-            line,
-            "^\\def\\UlrikeFischer@package@version"
-          ) 
-         then
-           line = string.gsub(line, "{[0-9.a-zA-Z]*}", "{" .. packageversion .."}")
-         end
-         if string.match
-          (
-            line,
-            "^\\def\\UlrikeFischer@package@date"
-          ) 
-         then
-           line = string.gsub(line, "{[0-9/]*}", "{" .. packagedate .."}")
-         end
-         -- for the README.md
-         if string.match
-          (
-            line,
-            "^Packageversion: "
-          ) 
-         then
-           line = string.gsub(line, "{[0-9.a-zA-Z]*}", "{" .. packageversion .."}")
-         end
-         if string.match
-          (
-            line,
-            "^Packagedate: "
-          ) 
-         then
-           line = string.gsub(line, "{[0-9/]*}", "{" .. packagedate .."}")
-         end 
-       return line
-     end
 
 kpse.set_program_name ("kpsewhich")
 if not release_date then
