@@ -26,7 +26,7 @@ luatexbase.add_to_callback
  )
 \end{luacode}
 
-\usepackage{unicode-math}
+\usepackage[math-style=upright]{unicode-math}
 \usepackage{combofont}
 
 \setmainfont{Fira Sans}
@@ -41,7 +41,7 @@ luatexbase.add_to_callback
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x61-0x7A*0x03B1-0x03C9
  }
 
 \setupcombofont{FiraMathScript}
@@ -53,7 +53,7 @@ luatexbase.add_to_callback
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x61-0x7A*0x03B1-0x03C9
  }
 
 \setupcombofont{FiraMathScriptScript}
@@ -65,7 +65,7 @@ luatexbase.add_to_callback
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x61-0x7A*0x03B1-0x03C9
  }
  
 % Mathversion bold need Script and ScriptScript declarations too! 
@@ -78,7 +78,7 @@ luatexbase.add_to_callback
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x61-0x7A*0x03B1-0x03C9
  }
 
 
@@ -101,17 +101,10 @@ luatexbase.add_to_callback
 \SetSymbolFont{operators}{bold}{TU}{FiraMath}{bx}{n}
 
 
-% Map a etc to the ascii range. Original values can be found with
-% [\Umathcharclass `\a] [\Umathcharfam `\a] [\Umathcharslot `\a]
-
-\Umathcode `\a =  "7 "0 "61
-\Umathcode `\b =  "7 "0 "62
-\Umathcode `\c =  "7 "0 "63
-\Umathcode `\d =  "7 "0 "64
-\Umathcode `\e =  "7 "0 "65
-\Umathcode `\f =  "7 "0 "66
-\Umathcode `\g =  "7 "0 "67
-\Umathcode `\h =  "7 "0 "68
+% Map "a" etc to the ascii range. Original values can be found with
+%[\Umathcharclass `\a] [\Umathcharfam `\a] [\Umathcharslot `\a]
+% not needed because of math-style=upright
+%\Umathcode `\a =  "7 "0 "61
 
 
 \begin{document}

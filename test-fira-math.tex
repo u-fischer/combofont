@@ -2,36 +2,35 @@
 %\RequirePackage{luatex85}
 % !TEX encoding = UTF-8 Unicode
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
-
 \documentclass[parskip=full]{scrartcl}
 
 \usepackage{luacode}
-\begin{luacode}
 
-local patch_texgyrepagellamath = function (fontdata)
- local mathconstants = fontdata.MathConstants
- if mathconstants and fontdata.psname == "TeXGyrePagellaMath-Regular"
- then
-    mathconstants.FractionNumeratorDisplayStyleShiftUp=0.5*mathconstants.FractionNumeratorDisplayStyleShiftUp
-    mathconstants.FractionNumeratorShiftUp=5.5*mathconstants.FractionNumeratorShiftUp
- end
-end
+%%As a test I patch the FraktionNumeratorShift by a large value
+%% and add it to the luaotfload patch_font callback:
+%\begin{luacode}
+%
+%local patch_texgyrepagellamath = function (fontdata)
+% local mathconstants = fontdata.MathConstants
+% if mathconstants and fontdata.psname == "TeXGyrePagellaMath-Regular"
+% then
+%    mathconstants.FractionNumeratorDisplayStyleShiftUp=5.5*mathconstants.FractionNumeratorDisplayStyleShiftUp
+%    mathconstants.FractionNumeratorShiftUp=5.5*mathconstants.FractionNumeratorShiftUp
+% end
+%end
+%
+%
+%luatexbase.add_to_callback
+% (
+%  "luaotfload.patch_font",
+%  patch_texgyrepagellamath,
+%  "change_texgyrepagellamath"
+% )
+%\end{luacode}
 
-
-luatexbase.add_to_callback
- (
-  "luaotfload.patch_font",
-  patch_texgyrepagellamath,
-  "change_math_fonts"
- )
-\end{luacode}
-
-\usepackage{unicode-math}
-
-\setmainfont{Fira Sans}
-
+\usepackage[math-style=upright]{unicode-math}
 \usepackage{combofont}
-
+\setmainfont{Fira Sans Light}
 \setupcombofont{FiraMath}
  {%
  file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
@@ -41,33 +40,34 @@ luatexbase.add_to_callback
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x41-0x5A*0x61-0x7A*0x03B1-0x03C9
  }
 
 \setupcombofont{FiraMathScript}
  {%
  file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT;+ssty=0 at #1pt,
+ file:firasans-light.otf at #1pt,
+ file:firasans-lightitalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x41-0x5A*0x61-0x7A*0x03B1-0x03C9
+ }
+
+\setupcombofont{FiraMathScriptScript}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT;+ssty=1 at #1pt,
  file:firasans-regular.otf at #1pt,
  file:firasans-regularitalic.otf at #1pt
  }
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x41-0x5A*0x61-0x7A*0x03B1-0x03C9
  }
 
-\setupcombofont{FiraMathScriptScript}
- {%
- file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT;+ssty=1 at #1pt,
- file:firasans-semibold.otf at #1pt,
- file:firasans-semibolditalic.otf at #1pt
- }
- {%
- {},
- 0x30-0x39,
- 0x61-0x7A
- }
- 
+% Mathversion bold need Script and ScriptScript declarations too!
 \setupcombofont{FiraMathBold}
  {%
  file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
@@ -77,9 +77,32 @@ luatexbase.add_to_callback
  {%
  {},
  0x30-0x39,
- 0x61-0x7A
+ 0x41-0x5A*0x61-0x7A*0x03B1-0x03C9
  }
 
+\setupcombofont{FiraMathBoldScript}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
+ file:firasans-regular.otf at #1pt,
+ file:firasans-regularitalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x41-0x5A*0x61-0x7A*0x03B1-0x03C9
+ }
+
+\setupcombofont{FiraMathBoldScriptScript}
+ {%
+ file:texgyrepagella-math.otf:mode=base;script=math;language=DFLT; at #1pt,
+ file:firasans-semibold.otf at #1pt,
+ file:firasans-semibolditalic.otf at #1pt
+ }
+ {%
+ {},
+ 0x30-0x39,
+ 0x41-0x5A*0x61-0x7A*0x03B1-0x03C9
+ }
 
 \DeclareFontFamily{TU}{FiraMath}{}
 \DeclareFontShape {TU}{FiraMath}{m}{n}
@@ -89,28 +112,28 @@ luatexbase.add_to_callback
    <10-> combo*FiraMath
   }{}
 
-\DeclareFontShape {TU}{FiraMath}{bx}{n} {<->combo*FiraMathBold}{}
+\DeclareFontShape {TU}{FiraMath}{bx}{n}
+ {
+    <-7> combo*FiraMathBoldScriptScript
+   <7-10>combo*FiraMathBoldScript
+   <10-> combo*FiraMathBold
+  }{}
 
+
+% better start with a real math font, so that
+% unicode sets everything up
 \setmathfont{TeX Gyre Pagella Math}%
 
-%
+% Perhaps some other symbol fonts will need setup too
 \SetSymbolFont{operators}{normal}{TU}{FiraMath}{m}{n}
-\SetSymbolFont{operators}{bold}{TU}{FiraMath}{bx}{n}
-%
-%
-%% show with [\Umathcharclass `\a] [\Umathcharfam `\a] [\Umathcharslot `\a]
-%
-\Umathcode `\a =  "7 "0 "61
-\Umathcode `\b =  "7 "0 "62
-\Umathcode `\c =  "7 "0 "63
-\Umathcode `\d =  "7 "0 "64
-\Umathcode `\e =  "7 "0 "65
-\Umathcode `\f =  "7 "0 "66
-\Umathcode `\g =  "7 "0 "67
-\Umathcode `\h =  "7 "0 "68
+\SetSymbolFont{operators}{bold}  {TU}{FiraMath}{bx}{n}
+\setmathfontface\mathrm{FiraSansLight}
 
-
+\usepackage{siunitx}
+\sisetup{locale=DE, detect-weight,detect-mode}
 \begin{document}
+
+\SI{1}{\meter} $\SI{1}{\meter}$
 
 \minisec{Test some symbols}
 
