@@ -1,0 +1,296 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<1>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<2>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<3>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<4>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<5>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<6>”, injecting.
+LaTeX Font Warning: Font shape `TU/TeXGyrePagellaMath(2)/bx/n' undefined
+(Font)              using `TU/TeXGyrePagellaMath(2)/m/n' instead on input line ....
+LaTeX Font Info:    Font shape `TU/TeXGyrePagellaMath(2)/bx/n' will be
+(Font)              scaled to size 8.10385pt on input line ....
+LaTeX Font Info:    Font shape `TU/TeXGyrePagellaMath(2)/bx/n' will be
+(Font)              scaled to size 6.02315pt on input line ....
+LaTeX Font Warning: Font shape `TU/TeXGyrePagellaMath(3)/bx/n' undefined
+(Font)              using `TU/TeXGyrePagellaMath(3)/m/n' instead on input line ....
+LaTeX Font Info:    Font shape `TU/TeXGyrePagellaMath(3)/bx/n' will be
+(Font)              scaled to size 8.10213pt on input line ....
+LaTeX Font Info:    Font shape `TU/TeXGyrePagellaMath(3)/bx/n' will be
+(Font)              scaled to size 6.02185pt on input line ....
+Completed box being shipped out [1]
+\vbox(655.63496+0.0)x435.61176, direction TLT
+.\glue -25.16531
+.\vbox(680.80028+0.0)x418.25555, shifted 17.3562, direction TLT
+..\vbox(17.0+0.0)x418.25555, glue set 17.0fil, direction TLT
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x418.25555, direction TLT
+..\glue 20.40001
+..\glue(\lineskip) 0.0
+..\vbox(595.80026+0.0)x418.25555, glue set 384.63608fil, direction TLT
+...\write-{}
+...\glue(\topskip) 3.4007
+...\hbox(7.5993+2.24475)x418.25555, glue set 161.65408fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmss/bx/n/10.95 T
+....\kern-1.0074 (font)
+....\TU/lmss/bx/n/10.95 e
+....\TU/lmss/bx/n/10.95 s
+....\TU/lmss/bx/n/10.95 t
+....\glue(\spaceskip) 4.01865 plus 2.00932 minus 1.33955
+....\TU/lmss/bx/n/10.95 s
+....\TU/lmss/bx/n/10.95 o
+....\TU/lmss/bx/n/10.95 m
+....\TU/lmss/bx/n/10.95 e
+....\glue(\spaceskip) 4.01865 plus 2.00932 minus 1.33955
+....\TU/lmss/bx/n/10.95 s
+....\TU/lmss/bx/n/10.95 y
+....\TU/lmss/bx/n/10.95 m
+....\discretionary (penalty 50)
+.....< \TU/lmss/bx/n/10.95 -
+....\TU/lmss/bx/n/10.95 b
+....\kern0.33945 (font)
+....\TU/lmss/bx/n/10.95 o
+....\TU/lmss/bx/n/10.95 l
+....\TU/lmss/bx/n/10.95 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\penalty 10000
+...\penalty 10000
+...\glue(\parskip) 13.6 plus 1.36008
+...\glue(\lineskip) 1.0
+...\hbox(12.66344+1.24292)x418.25555, glue set 229.49089fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\mathon
+....\TU/FiraMath/m/n/10.95 1
+....\TU/FiraMath/m/n/10.95 2
+....\TU/FiraMath/m/n/10.95 3
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/m/n/10.95 −
+....\penalty 700
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/m/n/10.95 a
+....\hbox(6.15643+0.09723)x8.81151, shifted -3.87589, direction TLT
+.....\TU/FiraMath/m/n/8.103 a
+.....\hbox(3.28828+0.09636)x3.76294, shifted -2.86815, direction TLT
+......\TU/FiraMath/m/n/6.0225 a
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/m/n/10.95 +
+....\penalty 700
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/m/n/10.95 1
+....\hbox(6.92732+0.0)x7.01689, shifted -3.87589, direction TLT
+.....\TU/FiraMath/m/n/8.103 1
+.....\hbox(4.05917+0.0)x3.07034, shifted -2.86815, direction TLT
+......\TU/FiraMath/m/n/6.0225 1
+....\TU/FiraMath/m/n/10.95 a
+....\TU/FiraMath/m/n/10.95 b
+....\TU/FiraMath/m/n/10.95 c
+....\kern0.1533 (italic)
+....\glue(\thickmuskip) 3.0413 plus 3.0413
+....\TU/FiraMath/m/n/10.95 =
+....\penalty 500
+....\glue(\thickmuskip) 3.0413 plus 3.0413
+....\hbox(12.66344+1.24292)x77.79968, direction TLT
+.....\hbox(9.198+3.3945)x7.69785, shifted -2.15158, direction TLT
+......\TU/FiraMath/m/n/10.95 󰠏
+.....\vbox(12.66344+0.0)x70.10184, direction TLT
+......\kern1.31386 (font)
+......\rule(0.65694+0.0)x*
+......\kern2.5568 (font)
+......\hbox(8.13585+0.0)x70.10184, direction TLT
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+.......\TU/FiraMath/m/n/10.95 h
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 10.95 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -300
+...\glue 8.65596
+...\penalty 10000
+...\penalty 10000
+...\glue(\parskip) 13.6 plus 1.36008
+...\glue(\baselineskip) 4.75778
+...\hbox(7.5993+2.2557)x418.25555, glue set 174.8981fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmss/bx/n/10.95 T
+....\kern-1.0074 (font)
+....\TU/lmss/bx/n/10.95 e
+....\TU/lmss/bx/n/10.95 s
+....\TU/lmss/bx/n/10.95 t
+....\glue(\spaceskip) 4.01865 plus 2.00932 minus 1.33955
+....\TU/lmss/bx/n/10.95 p
+....\TU/lmss/bx/n/10.95 a
+....\TU/lmss/bx/n/10.95 t
+....\TU/lmss/bx/n/10.95 c
+....\TU/lmss/bx/n/10.95 h
+....\discretionary (penalty 50)
+.....< \TU/lmss/bx/n/10.95 -
+....\TU/lmss/bx/n/10.95 i
+....\TU/lmss/bx/n/10.95 n
+....\TU/lmss/bx/n/10.95 g
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\penalty 10000
+...\penalty 10000
+...\glue(\parskip) 13.6 plus 1.36008
+...\glue(\lineskip) 1.0
+...\hbox(33.66339+4.58533)x418.25555, glue set 400.65149fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\mathon
+....\hbox(33.66339+4.58533)x6.65407, direction TLT
+.....\hbox(33.66339+4.58533)x6.65407, direction TLT
+......\hbox(0.0+0.0)x1.2, shifted -2.73721, direction TLT
+......\vbox(33.66339+4.58533)x4.25407, direction TLT
+.......\hbox(5.4209+0.0)x4.25407, glue set 0.37274fil, direction TLT
+........\glue 0.0 plus 1.0fil minus 1.0fil
+........\TU/FiraMath/m/n/8.103 1
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\kern25.1768 (font)
+.......\rule(0.65694+0.0)x*
+.......\kern1.31386 (font)
+.......\hbox(5.50194+0.17827)x4.25407, direction TLT
+........\TU/FiraMath/m/n/8.103 9
+......\hbox(0.0+0.0)x1.2, shifted -2.73721, direction TLT
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 10.95 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -300
+...\glue 8.65596
+...\penalty 10000
+...\penalty 10000
+...\glue(\parskip) 13.6 plus 1.36008
+...\glue(\baselineskip) 1.41537
+...\hbox(7.5993+0.12045)x418.25555, glue set 164.00833fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmss/bx/n/10.95 T
+....\kern-1.0074 (font)
+....\TU/lmss/bx/n/10.95 e
+....\TU/lmss/bx/n/10.95 s
+....\TU/lmss/bx/n/10.95 t
+....\glue(\spaceskip) 4.01865 plus 2.00932 minus 1.33955
+....\TU/lmss/bx/n/10.95 m
+....\TU/lmss/bx/n/10.95 a
+....\TU/lmss/bx/n/10.95 t
+....\TU/lmss/bx/n/10.95 h
+....\glue(\spaceskip) 4.01865 plus 2.00932 minus 1.33955
+....\TU/lmss/bx/n/10.95 v
+....\TU/lmss/bx/n/10.95 e
+....\TU/lmss/bx/n/10.95 r
+....\discretionary (penalty 50)
+.....< \TU/lmss/bx/n/10.95 -
+....\TU/lmss/bx/n/10.95 s
+....\TU/lmss/bx/n/10.95 i
+....\TU/lmss/bx/n/10.95 o
+....\TU/lmss/bx/n/10.95 n
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\penalty 10000
+...\penalty 10000
+...\glue(\parskip) 13.6 plus 1.36008
+...\glue(\lineskip) 1.0
+...\hbox(33.66339+4.58533)x418.25555, glue set 299.63739fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\mathon
+....\TU/FiraMath/bx/n/10.95 1
+....\TU/FiraMath/bx/n/10.95 2
+....\TU/FiraMath/bx/n/10.95 3
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/bx/n/10.95 −
+....\penalty 700
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/bx/n/10.95 a
+....\hbox(6.11427+0.09723)x8.79945, shifted -3.87589, direction TLT
+.....\TU/FiraMath/bx/n/8.103 a
+.....\hbox(3.24612+0.07227)x3.75089, shifted -2.86815, direction TLT
+......\TU/FiraMath/bx/n/6.0225 a
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/bx/n/10.95 +
+....\penalty 700
+....\glue(\medmuskip) 2.43304 plus 1.21652 minus 2.43304
+....\TU/FiraMath/bx/n/10.95 1
+....\hbox(6.8972+0.0)x6.87837, shifted -3.87589, direction TLT
+.....\TU/FiraMath/bx/n/8.103 1
+.....\hbox(4.02905+0.0)x2.93182, shifted -2.86815, direction TLT
+......\TU/FiraMath/bx/n/6.0225 1
+....\TU/FiraMath/bx/n/10.95 a
+....\TU/FiraMath/bx/n/10.95 b
+....\TU/FiraMath/bx/n/10.95 c
+....\kern0.219 (italic)
+....\glue(\thickmuskip) 3.0413 plus 3.0413
+....\TU/FiraMath/bx/n/10.95 =
+....\penalty 500
+....\glue(\thickmuskip) 3.0413 plus 3.0413
+....\hbox(33.66339+4.58533)x6.65407, direction TLT
+.....\hbox(33.66339+4.58533)x6.65407, direction TLT
+......\hbox(0.0+0.0)x1.2, shifted -2.73721, direction TLT
+......\vbox(33.66339+4.58533)x4.25407, direction TLT
+.......\hbox(5.4209+0.0)x4.25407, glue set 0.37274fil, direction TLT
+........\glue 0.0 plus 1.0fil minus 1.0fil
+........\TU/FiraMath/bx/n/8.103 1
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\kern25.1768 (font)
+.......\rule(0.65694+0.0)x*
+.......\kern1.31386 (font)
+.......\hbox(5.50194+0.17827)x4.25407, direction TLT
+........\TU/FiraMath/bx/n/8.103 9
+......\hbox(0.0+0.0)x1.2, shifted -2.73721, direction TLT
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 10.95 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -4.58533
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 40.27446
+..\hbox(7.32555+0.0)x418.25555, direction TLT
+...\hbox(7.32555+0.0)x418.25555, direction TLT
+....\vbox(7.32555+0.0)x418.25555, direction TLT
+.....\hbox(7.32555+0.0)x418.25555, glue set 206.75711fil, direction TLT
+......\glue 0.0 plus 1.0fil
+......\TU/FiraSans(0)/m/n/10.95 1
+......\glue 0.0 plus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+(combofont-test-fira-math.aux)
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.

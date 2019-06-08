@@ -1,0 +1,155 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<1>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<2>”, injecting.
+luaotfload | loaders : eval: found tfmdata for “luaotfload<3>”, injecting.
+Completed box being shipped out [1]
+\vbox(655.63496+0.0)x435.61176, direction TLT
+.\glue -25.16531
+.\vbox(680.80028+0.0)x418.25555, shifted 17.3562, direction TLT
+..\vbox(17.0+0.0)x418.25555, glue set 17.0fil, direction TLT
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x418.25555, direction TLT
+..\glue 20.40001
+..\glue(\lineskip) 0.0
+..\vbox(595.80026+0.0)x418.25555, glue set 541.80719fil, direction TLT
+...\write-{}
+...\glue(\topskip) 0.0
+...\hbox(11.7603+2.4309)x418.25555, glue set 250.52347fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/combotest/m/n/10.95 A
+....\glue(\spaceskip) 5.74875
+....\TU/combotest/m/n/10.95 T
+....\TU/combotest/m/n/10.95 e
+....\TU/combotest/m/n/10.95 x
+....\TU/combotest/m/n/10.95 t
+....\glue(\spaceskip) 5.74875
+....\TU/combotest/m/n/10.95 w
+....\TU/combotest/m/n/10.95 i
+....\TU/combotest/m/n/10.95 t
+....\TU/combotest/m/n/10.95 h
+....\glue(\spaceskip) 5.74875
+....\TU/combotest/m/n/10.95 S
+....\TU/combotest/m/n/10.95 o
+....\TU/combotest/m/n/10.95 m
+....\TU/combotest/m/n/10.95 e
+....\glue(\spaceskip) 5.74875
+....\TU/combotest/m/n/10.95 C
+....\TU/combotest/m/n/10.95 a
+....\TU/combotest/m/n/10.95 p
+....\discretionary (penalty 50)
+.....< \TU/combotest/m/n/10.95 -
+....\TU/combotest/m/n/10.95 i
+....\discretionary (penalty 50)
+.....< \TU/combotest/m/n/10.95 -
+....\TU/combotest/m/n/10.95 t
+....\TU/combotest/m/n/10.95 a
+....\TU/combotest/m/n/10.95 l
+....\TU/combotest/m/n/10.95 s
+....\TU/combotest/m/n/10.95 !
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 6.8 plus 6.8
+...\glue(\lineskip) 1.0
+...\hbox(12.888+2.664)x418.25555, glue set 234.4395fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/combotest/m/n/12 A
+....\glue(\spaceskip) 6.3
+....\TU/combotest/m/n/12 T
+....\TU/combotest/m/n/12 e
+....\TU/combotest/m/n/12 x
+....\TU/combotest/m/n/12 t
+....\glue(\spaceskip) 6.3
+....\TU/combotest/m/n/12 w
+....\TU/combotest/m/n/12 i
+....\TU/combotest/m/n/12 t
+....\TU/combotest/m/n/12 h
+....\glue(\spaceskip) 6.3
+....\TU/combotest/m/n/12 S
+....\TU/combotest/m/n/12 o
+....\TU/combotest/m/n/12 m
+....\TU/combotest/m/n/12 e
+....\glue(\spaceskip) 6.3
+....\TU/combotest/m/n/12 C
+....\TU/combotest/m/n/12 a
+....\TU/combotest/m/n/12 p
+....\discretionary (penalty 50)
+.....< \TU/combotest/m/n/12 -
+....\TU/combotest/m/n/12 i
+....\discretionary (penalty 50)
+.....< \TU/combotest/m/n/12 -
+....\TU/combotest/m/n/12 t
+....\TU/combotest/m/n/12 a
+....\TU/combotest/m/n/12 l
+....\TU/combotest/m/n/12 s
+....\TU/combotest/m/n/12 !
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 6.8 plus 6.8
+...\glue(\lineskip) 1.0
+...\hbox(8.592+1.776)x418.25555, glue set 295.71161fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/combotest/m/n/8 A
+....\glue(\spaceskip) 4.2
+....\TU/combotest/m/n/8 T
+....\TU/combotest/m/n/8 e
+....\TU/combotest/m/n/8 x
+....\TU/combotest/m/n/8 t
+....\glue(\spaceskip) 4.2
+....\TU/combotest/m/n/8 w
+....\TU/combotest/m/n/8 i
+....\TU/combotest/m/n/8 t
+....\TU/combotest/m/n/8 h
+....\glue(\spaceskip) 4.2
+....\TU/combotest/m/n/8 S
+....\TU/combotest/m/n/8 o
+....\TU/combotest/m/n/8 m
+....\TU/combotest/m/n/8 e
+....\glue(\spaceskip) 4.2
+....\TU/combotest/m/n/8 C
+....\TU/combotest/m/n/8 a
+....\TU/combotest/m/n/8 p
+....\discretionary (penalty 50)
+.....< \TU/combotest/m/n/8 -
+....\TU/combotest/m/n/8 i
+....\discretionary (penalty 50)
+.....< \TU/combotest/m/n/8 -
+....\TU/combotest/m/n/8 t
+....\TU/combotest/m/n/8 a
+....\TU/combotest/m/n/8 l
+....\TU/combotest/m/n/8 s
+....\TU/combotest/m/n/8 !
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -1.776
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 40.30731
+..\hbox(7.2927+0.0)x418.25555, direction TLT
+...\hbox(7.2927+0.0)x418.25555, direction TLT
+....\vbox(7.2927+0.0)x418.25555, direction TLT
+.....\hbox(7.2927+0.0)x418.25555, glue set 206.39027fil, direction TLT
+......\glue 0.0 plus 1.0fil
+......\TU/lmr/m/n/10.95 1
+......\glue 0.0 plus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+(test-combofont.aux)
