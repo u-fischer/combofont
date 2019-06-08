@@ -28,9 +28,9 @@ uploadconfig = {
   email    = mydata.email, 
   update   = true ,
   topic=    {"font-mgmt","luatex"},
-  note     = [[Uploaded automatically by l3build. Description unchanged.]],
+  note     = [[only internal command name changes, no announcement needed. Uploaded automatically by l3build. Description unchanged.]],
   description=[[--unchanged--]],
-  announcement_file="ctan.ann"             
+  --announcement_file="ctan.ann"             
 }
 
 stdengine    = "luatex"
@@ -51,14 +51,14 @@ installfiles      = {"combofont.sty"}
 versionform       ="true"
 versionfiles      ={"combofont.tex","combofont.sty","README.md"}
 
-tagfiles = {"combofont.sty","Readme.md"}
+tagfiles = {"combofont.sty","README.md"}
 
 -- packtdszip=true
 function update_tag (file , content , tagname , tagdate )
   if string.match (file , "%.sty$") then
    return string.gsub ( content ,
-   "\n\\def\\UlrikeFischer@package@combofont@date{%d%d%d%d/%d%d/%d%d}\\def\\UlrikeFischer@package@combofont@version{%w+%.%w+}\n",
-   "\n\\def\\UlrikeFischer@package@combofont@date{"..packagedate.."}\\def\\UlrikeFischer@package@combofont@version{"..packageversion.."}\n"
+   "\n\\def\\UlrikeFischer@package@ufcombofont@date{%d%d%d%d/%d%d/%d%d}\\def\\UlrikeFischer@package@ufcombofont@version{%w+%.%w+}\n",
+   "\n\\def\\UlrikeFischer@package@ufcombofont@date{"..packagedate.."}\\def\\UlrikeFischer@package@ufcombofont@version{"..packageversion.."}\n"
     )
   elseif string.match (file , "%.md$") then
    return string.gsub ( content ,
