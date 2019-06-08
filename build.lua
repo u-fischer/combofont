@@ -1,11 +1,37 @@
--- Build script for citeall
+-- Build script for combofont
 -- l3build install --texmfhome ../texmf
 
-packageversion= "0.2R" -- "0.2"
-packagedate="2018/05/28"
+packageversion= "0.3" -- "0.3"
+packagedate="2019/06/08"
 
 module   = "combofont"
 ctanpkg  = "combofont"
+
+local ok, mydata = pcall(require, "ulrikefischerdata.lua")
+if not ok then
+  mydata= {email="XXX",github="XXX",name="XXX"}
+end
+
+print(mydata.email)
+
+uploadconfig = {
+  pkg     = ctanpkg,
+  version = "v"..packageversion.." "..packagedate,
+  author  = "Ulrike Fischer",
+  license = "lppl1.3c",
+  summary = "Add NFSS-declarations of combo fonts to LuaLATEX documents",
+  ctanPath = "/macros/luatex/latex/"..ctanpkg,
+  repository = mydata.github .. ctanpkg,
+  bugtracker = mydata.github .. ctanpkg,
+  support    = mydata.github .. ctanpkg,
+  uploader   = mydata.name,
+  email    = mydata.email, 
+  update   = true ,
+  topic=    {"font-mgmt","luatex"},
+  note     = [[Uploaded automatically by l3build. Description unchanged.]],
+  description=[[--unchanged--]],
+  announcement_file="ctan.ann"             
+}
 
 stdengine    = "luatex"
 checkengines = {"luatex"}
